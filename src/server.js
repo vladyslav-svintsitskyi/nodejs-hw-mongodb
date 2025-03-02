@@ -6,8 +6,6 @@ import pino from 'pino-http';
 import { getEnvVar } from './utils/getEnvVar.js';
 import { getAllContacts, getContactById } from './services/contacts.js';
 
-//qGQpWjTANQaHga2k
-
 const PORT = Number(getEnvVar('PORT', '3000'));
 
 export async function setupServer() {
