@@ -25,7 +25,7 @@ export async function setupServer() {
 
     app.use(contactsRouter);
 
-    app.use('*', notFoundHandler);
+    app.use(notFoundHandler);
 
     app.use(errorHandler);
 
