@@ -1,4 +1,3 @@
-import { raw } from 'express';
 import { ContactsCollection } from '../models/contact.js';
 
 export const getAllContacts = async () => {
@@ -7,8 +6,7 @@ export const getAllContacts = async () => {
 };
 
 export const getContactById = async (contactId) => {
-  const contact = await ContactsCollection.findById(contactId);
-  return contact;
+  return await ContactsCollection.findById(contactId);
 };
 
 export const createContact = async (payload) => {
@@ -16,16 +14,15 @@ export const createContact = async (payload) => {
   return contact;
 };
 
-export const updateContact = async (contactId, payload, options = {}) => {
-  const rawResult = await ContactsCollection.findOneAndUpdate(
-    { _id: contactId },
+export const updateContact = async (contactId, payload) => {
+  const rawResult = await ContactsCollection.findByIdAndUpdate(
+    contactId,
     payload,
+    { new: true },
   );
-  if (!rawResult || !rawResult.value) return null;
+  if (!rawResult) return null;
 
-  return {
-    contact: rawResult.value,
-  };
+  return rawResult;
 };
 
 export const deleteContact = async (contactId) => {
