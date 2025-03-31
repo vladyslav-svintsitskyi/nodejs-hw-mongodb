@@ -13,7 +13,7 @@ export const getAllContacts = async ({
   const skip = (page - 1) * perPage;
 
   const contactsQuery = ContactsCollection.find({ userId });
-  const contactsCount = await ContactsCollection.find()
+  const contactsCount = await ContactsCollection.find({ userId })
     .merge(contactsQuery)
     .countDocuments();
 
@@ -32,8 +32,16 @@ export const getAllContacts = async ({
 };
 
 export const getContactById = async (contactId, userId) => {
-  const contact = await ContactsCollection.findOne({ _id: contactId, userId });
-  return contact;
+  try {
+    const contact = await ContactsCollection.findOne({
+      _id: contactId,
+      userId,
+    });
+    return contact;
+  } catch (error) {
+    console.error('Error while fetching contacts:', error);
+    throw error;
+  }
 };
 
 export const createContact = async (payload) => {
