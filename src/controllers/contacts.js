@@ -11,10 +11,12 @@ import { parseSortParams } from '../utils/parseSortParams.js';
 import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 import { getEnvVar } from '../utils/getEnvVar.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortOrder, sortBy } = parseSortParams(req.query);
+  const filter = parseFilterParams(req.query);
 
   const { _id: userId } = req.user;
 
@@ -24,6 +26,7 @@ export const getContactsController = async (req, res) => {
     sortOrder,
     sortBy,
     userId,
+    filter,
   });
 
   res.json({

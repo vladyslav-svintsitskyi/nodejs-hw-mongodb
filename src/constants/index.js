@@ -1,5 +1,18 @@
 import path from 'node:path';
 
+export const SORT_VALUES = [
+  '_id',
+  'name',
+  'isFavourite',
+  'phoneNumber',
+  'email',
+  'contactType',
+  'createdAt',
+  'updatedAt',
+];
+
+export const CONTACT_TYPES = ['work', 'home', 'personal'];
+
 export const SORT_ORDER = {
   ASC: 'asc',
   DESC: 'desc',
@@ -7,11 +20,6 @@ export const SORT_ORDER = {
 
 export const FIFTEEN_MINUTES = 15 * 60 * 1000;
 export const ONE_DAY = 24 * 60 * 60 * 1000;
-
-export const ROLES = {
-  TEACHER: 'teacher',
-  PARENT: 'parent',
-};
 
 export const SMTP = {
   SMTP_HOST: 'SMTP_HOST',
